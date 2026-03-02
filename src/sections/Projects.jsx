@@ -22,7 +22,7 @@ const projects = [
   {
     title: "Revolver Bali - Company Profile",
     description:
-      "An intelligent writing tool powered by GPT-4, helping users create better content faster.",
+      "An interactive company profile website for a luxury resort in Bali.",
     image: "/projects/project3.png",
     tags: ["React", "OpenAI", "Python", "FastAPI"],
     link: "#",
@@ -142,4 +142,5 @@ export const Projects = () => {
       </div>
     </section>
   );
+
 };
