@@ -1,10 +1,11 @@
 import { Download } from "lucide-react";
 
-// Destructure `onClick` alongside `children`
-export const AnimatedBorderButton = ({ children, onClick }) => {
+// Ditambahkan ...props agar semua event seperti onClick, type, dll bisa masuk
+export const AnimatedBorderButton = ({ children, onClick, ...props }) => {
   return (
     <button
-      onClick={onClick} // <-- Add this line right here!
+      onClick={onClick} // <-- INI DIA YANG HILANG! Sekarang sudah dipasang
+      {...props}        // <-- Ini untuk menjaga properti bawaan button lainnya
       className="relative bg-transparent border border-border 
         text-foreground hover:border-primary/50 transition-all 
         duration-1000 focus:outline-none focus-visible:ring-2 

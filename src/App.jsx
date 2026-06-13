@@ -6,6 +6,7 @@ import { Experience } from "@/sections/Experience";
 import { Testimonials } from "@/sections/Testimonials";
 import { Contact } from "@/sections/Contact";
 import { Footer } from "./layout/Footer";
+import { Certificates } from "@/sections/Certificates";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Hero />
         <About />
         <Projects />
+        <Certificates />
         <Experience />
         <Testimonials />
         <Contact />

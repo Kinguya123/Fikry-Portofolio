@@ -1,17 +1,26 @@
 const experiences = [
   {
-    period: "2025 — Present",
+    period: "2026 — Present",
     role: "Full Stack Engineer",
-    company: "Tech Innovators Inc.",
+    company: "PT. Kompas Gramedia",
     description:
-      "Leading Backend and support frontend architecture for a suite of fintech products and SMK Pusdikhubad School Project. Implemented micro-frontend architecture, reduced bundle size by 40%, and mentored a team of 5 developers.",
-    technologies: ["React", "TypeScript", "Next.js", "GraphQL"],
+      "Working at the most leading digital media in Indonesia with 30m+ visitors. I am working at the digital technology division, developing and maintaining media and digital products from various media brands under Kompas Gramedia.",
+    technologies: ["Next.js", "Tailwind css", "GraphQL", "PostgreSQL","React.js"],
     current: true,
+  },
+  {
+    period: "2025 — 2026",
+    role: "Full Stack Engineer",
+    company: "SMK PK Pusdikhubad",
+    description:
+      "Leading Backend and support frontend architecture for SMK Pusdikhubad School Project. Implemented micro-frontend architecture, reduced bundle size by 40%, and mentored a team of 5 developers.",
+    technologies: ["React", "TypeScript", "Next.js", "GraphQL"],
+    current: false,
   },
   {
     period: "2024 — 2025",
     role: "Backend Engineer and UI/UX Designer",
-    company: "Digital Solutions Co.",
+    company: "Kreatif Digital Studio",
     description:
       "Built and maintained multiple React applications with Express.js for enterprise clients. Introduced automated testing practices that improved code coverage to 85%.",
     technologies: ["React", "Redux", "Jest", "Cypress"],
@@ -35,6 +44,7 @@ const experiences = [
     technologies: ["JavaScript", "PHP", "WordPress", "MySQL"],
     current: false,
   },
+  
 ];
 
 export const Experience = () => {

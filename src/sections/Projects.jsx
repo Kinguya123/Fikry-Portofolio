@@ -17,7 +17,7 @@ const projects = [
       "A full-featured e-commerce solution with inventory management, payment processing, and analytics dashboard.",
     image: "/projects/project2.png",
     tags: ["Next.js", "Stripe", "PostgreSQL", "Tailwind"],
-    link: "#",
+    link: "https://kinguya123.github.io/Kickers-Ecommerce/",
     github: "https://github.com/Kinguya123/Kickers-Ecommerce.git",
   },
   {
@@ -37,6 +37,24 @@ const projects = [
     tags: ["Next.js", "Socket.io", "MongoDB", "Redis"],
     link: "#",
     github: "#",
+  },
+  {
+    title: "Nu Rib's - Company Profile",
+    description:
+      "An Interactive Company Profile With CMS ( Content Management System ) for Ribs Restaurant In unjani, Bandung",
+    image: "/projects/project5.png",
+    tags: ["Next.js", "React.js", "Mysql", "Postman"],
+    link: "https://company-profile-nu-ribs.vercel.app/",
+    github: "https://github.com/Kinguya123/Company-profile-NuRibs.git",
+  },
+  {
+    title: "Attendance System Pusdikhubad",
+    description:
+      "Presence management system for SMK PK Pusdikhubad. Implemented a micro-frontend architecture, reduced bundle size by 40%, and mentored a team of 5 developers.",
+    image: "/projects/project6.png",
+    tags: ["PHP", "PostgreSQL", "Laravel"],
+    link: "#",
+    github: "https://github.com/Kinguya123/attendance-system-pusdikhubad.git",
   },
 ];
 

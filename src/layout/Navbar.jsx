@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 
 const navLinks = [
   { href: "#about", label: "About" },
+  { href: "#skills-section", label: "Skills" }, // Tautan langsung ke section skill
   { href: "#projects", label: "Projects" },
+  { href: "#certificates", label: "Certificates" },
   { href: "#experience", label: "Experience" },
   { href: "#testimonials", label: "Testimonials" },
 ];
@@ -44,7 +46,7 @@ export const Navbar = () => {
               <a
                 href={link.href}
                 key={index}
-                className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground rounded-full hover:bg-surface"
+                className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground rounded-full hover:bg-surface transition-colors duration-200"
               >
                 {link.label}
               </a>
@@ -79,14 +81,14 @@ export const Navbar = () => {
               <a
                 href={link.href}
                 key={index}
-                onClick={() => setIsMobileMenuOpen(false)} // Just close the menu, let href handle navigation
-                className="text-lg text-muted-foreground hover:text-foreground py-2"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-lg text-muted-foreground hover:text-foreground py-2 border-b border-white/5"
               >
                 {link.label}
               </a>
             ))}
 
-            <Button onClick={() => window.open("https://wa.me/628388979386", "_blank")} className="w-full">
+            <Button onClick={() => window.open("https://wa.me/628388979386", "_blank")} className="w-full mt-2">
               Contact Me
             </Button>
           </div>
