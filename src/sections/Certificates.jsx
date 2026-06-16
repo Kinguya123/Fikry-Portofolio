@@ -1,7 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Award, X, ExternalLink, Calendar } from "lucide-react";
 
-// Data sertifikat yang sudah dirapikan ID, warna, dan struktur propertinya
 const certificateFolders = [
   {
     id: "alibaba-cloud",
@@ -165,7 +164,7 @@ const certificateFolders = [
     id: "dicoding",
     title: "Dicoding Certification",
     issuer: "AWS Academy",
-    iconColor: "text-orange-500 bg-orange-500/10", // Diubah dari brown ke orange agar valid
+    iconColor: "text-orange-500 bg-orange-500/10",
     badgeText: "1 CERTIFICATES",
     items: [
       {
@@ -178,10 +177,10 @@ const certificateFolders = [
     ]
   },
   {
-    id: "microsoft-cert", // ID unik
+    id: "microsoft-cert",
     title: "Microsoft Certification",
     issuer: "Microsoft Award",
-    iconColor: "text-yellow-500 bg-yellow-500/10", // Perbaikan sintaks warna gold/yellow
+    iconColor: "text-yellow-500 bg-yellow-500/10",
     badgeText: "1 CERTIFICATES",
     items: [
       {
@@ -278,48 +277,56 @@ const certificateFolders = [
   }
 ];
 
-export const Certificates = () => {
+export const Certificates = ({ isLoading = false }) => {
   const [openFolder, setOpenFolder] = useState(null);
 
   return (
-    <section id="certificates" className="py-32 relative overflow-hidden bg-background">
-      <div className="container mx-auto px-6 relative z-10">
+    <section id="certificates" className="py-20 md:py-32 relative overflow-hidden bg-background">
+      {/* Background Decorative Glow */}
+      <div className="absolute top-1/3 left-1/2 w-80 h-80 bg-primary/5 rounded-full blur-3xl -translate-x-1/2 pointer-events-none" />
+
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
 
         {/* Section Header */}
-        <div className="text-center mx-auto max-w-3xl mb-16">
-          <span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase">
+        <div className={`text-center mx-auto max-w-3xl mb-16 md:mb-24 transition-all duration-700 ${
+          !isLoading ? "animate-fade-in" : "opacity-0 translate-y-4"
+        }`}>
+          <span className="text-primary text-xs md:text-sm font-semibold tracking-widest uppercase">
             Achievements
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6 text-secondary-foreground">
+          <h2 className="text-3xl md:text-5xl font-bold mt-3 mb-6 text-white">
             Licenses &{" "}
-            <span className="font-serif italic font-normal text-white">
+            <span className="font-serif italic font-normal text-primary glow-text">
               Certifications.
             </span>
           </h2>
         </div>
 
         {/* Grid Folder Kategori */}
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {certificateFolders.map((folder) => (
+        <div className="grid md:grid-cols-2 gap-4 md:gap-6 max-w-4xl mx-auto">
+          {certificateFolders.map((folder, idx) => (
             <div
               key={folder.id}
               onClick={() => setOpenFolder(folder)}
-              className="glass p-8 rounded-3xl border border-border/40 hover:border-primary/40 transition-all duration-300 cursor-pointer group flex flex-col justify-between space-y-8 min-h-[220px]"
+              className={`glass p-6 md:p-8 rounded-3xl border border-white/5 bg-surface/20 backdrop-blur-md hover:border-primary/40 hover:bg-surface/30 hover:-translate-y-1 transition-all duration-500 cursor-pointer group flex flex-col justify-between space-y-8 min-h-[200px] md:min-h-[220px] ${
+                !isLoading ? "animate-fade-in" : "opacity-0 translate-y-4"
+              }`}
+              style={{ animationDelay: `${(idx + 1) * 100}ms` }}
             >
               <div className="space-y-4">
-                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${folder.iconColor}`}>
+                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-transform duration-300 group-hover:scale-105 ${folder.iconColor}`}>
                   <Award className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                  <h3 className="text-lg md:text-xl font-bold text-white group-hover:text-primary transition-colors duration-300">
                     {folder.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground mt-1">{folder.issuer}</p>
+                  <p className="text-xs md:text-sm text-muted-foreground/80 mt-1">{folder.issuer}</p>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-4">
-                <span className="text-xs font-semibold tracking-wider text-muted-foreground uppercase bg-surface px-3 py-1.5 rounded-xl border border-border/40">
+              <div className="flex items-center justify-between pt-2">
+                <span className="text-[10px] md:text-xs font-semibold tracking-wider text-muted-foreground uppercase bg-muted/40 px-3 py-1.5 rounded-xl border border-white/[0.03]">
                   {folder.badgeText}
                 </span>
               </div>
@@ -327,66 +334,92 @@ export const Certificates = () => {
           ))}
         </div>
 
-        {/* MODAL OVERLAY - Menggunakan z-[9999] agar aman di tumpukan paling atas */}
+        {/* MODAL OVERLAY */}
         {openFolder && (
-          <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-background/80 backdrop-blur-md animate-fade-in">
+          <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-[#0f1418]/80 backdrop-blur-md animate-fade-in">
             {/* Modal Box */}
-            <div className="relative w-full max-w-2xl bg-card border border-border/60 rounded-[32px] shadow-2xl flex flex-col max-h-[85vh] overflow-hidden">
+            <div className="relative w-full max-w-2xl bg-card border border-white/10 rounded-[24px] md:rounded-[32px] shadow-2xl flex flex-col max-h-[85vh] overflow-hidden bg-surface/90">
 
               {/* Modal Header */}
-              <div className="p-8 text-center border-b border-border/40 sticky top-0 bg-card/90 backdrop-blur-sm z-10">
+              <div className="p-6 md:p-8 text-center border-b border-white/[0.05] sticky top-0 bg-card/95 backdrop-blur-sm z-10">
                 <button
                   onClick={() => setOpenFolder(null)}
-                  className="absolute top-6 right-6 p-2 rounded-full bg-surface hover:bg-border transition-colors cursor-pointer text-foreground"
+                  className="absolute top-5 right-5 p-2 rounded-full bg-muted/60 hover:bg-muted text-white transition-colors cursor-pointer"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4 md:w-5 h-5" />
                 </button>
-                <h3 className="text-2xl font-bold text-foreground pr-8 capitalize">{openFolder.title}</h3>
-                <p className="text-sm text-muted-foreground mt-1">
+                <h3 className="text-xl md:text-2xl font-bold text-white pr-8 capitalize">{openFolder.title}</h3>
+                <p className="text-xs md:text-sm text-muted-foreground mt-1.5">
                   {openFolder.issuer} — {openFolder.items.length} Certificates
                 </p>
               </div>
 
               {/* Modal Content */}
-              <div className="p-8 overflow-y-auto space-y-8 flex-1 scrollbar-thin">
-                {openFolder.items.map((cert, index) => (
-                  <div key={index} className="flex flex-col items-center bg-surface/30 border border-border/40 rounded-2xl p-4 space-y-4">
-                    {/* Frame Gambar Sertifikat */}
-                    <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-surface group/img">
-                      <img
-                        src={cert.image}
-                        alt={cert.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-102"
-                        onError={(e) => {
-                          e.currentTarget.src = "https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=800&auto=format&fit=crop";
-                        }}
-                      />
-                      {/* Hover Overlay Button */}
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
-                        <a
-                          href={cert.link}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="flex items-center gap-2 bg-background text-foreground px-4 py-2 rounded-full text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-all"
-                        >
-                          Verify Credential <ExternalLink className="w-4 h-4" />
-                        </a>
-                      </div>
-                    </div>
+<div className="p-5 md:p-8 overflow-y-auto space-y-6 md:space-y-8 flex-1 scrollbar-thin">
+  {openFolder.items.map((cert, index) => {
+    // Fungsi handler klik untuk memeriksa ketersediaan tautan kredensial
+    const handleVerifyClick = (e, url) => {
+      if (url === "#" || url === "") {
+        e.preventDefault();
+        alert("Credential verification link is being processed or updated by the issuer.");
+      }
+    };
 
-                    {/* Info Sertifikat Tekstual */}
-                    <div className="w-full text-left px-2 space-y-1">
-                      <h4 className="text-lg font-bold text-foreground">{cert.title}</h4>
-                      <div className="flex flex-wrap items-center justify-between text-xs text-muted-foreground pt-1">
-                        <span className="font-mono">SN: {cert.serialNumber}</span>
-                        <span className="flex items-center gap-1">
-                          <Calendar className="w-3.5 h-3.5" /> Valid Until: {cert.validUntil}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+    return (
+      <div key={index} className="flex flex-col items-center bg-muted/20 border border-white/5 rounded-2xl p-4 space-y-4">
+        {/* Frame Gambar Sertifikat */}
+        <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-background border border-white/5 group/img">
+          <img
+            src={cert.image}
+            alt={cert.title}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-102"
+            onError={(e) => {
+              e.currentTarget.src = "https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=800&auto=format&fit=crop";
+            }}
+          />
+          {/* Hover Overlay Button - SEKARANG SELALU MUNCUL DI DESKTOP */}
+          <div className="absolute inset-0 bg-black/50 opacity-0 md:group-hover/img:opacity-100 transition-opacity flex items-center justify-center p-4">
+            <a
+              href={cert.link}
+              target="_blank"
+              rel="noreferrer"
+              onClick={(e) => handleVerifyClick(e, cert.link)}
+              className="hidden md:flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-full text-xs font-semibold hover:bg-white hover:text-primary transition-all shadow-lg cursor-pointer"
+            >
+              Verify Credential <ExternalLink className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+
+        {/* Info Sertifikat Tekstual */}
+        <div className="w-full text-left px-1 space-y-2">
+          <h4 className="text-base md:text-lg font-bold text-white">{cert.title}</h4>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] md:text-xs text-muted-foreground pt-1 border-t border-white/[0.03]">
+            <span className="font-mono bg-muted/40 px-2 py-0.5 rounded border border-white/[0.02] w-fit">
+              SN: {cert.serialNumber}
+            </span>
+            <span className="flex items-center gap-1">
+              <Calendar className="w-3.5 h-3.5 text-primary" /> Valid Until: {cert.validUntil}
+            </span>
+          </div>
+          
+          {/* Tombol Verifikasi Tambahan Khusus Tampilan Mobile - SEKARANG SELALU MUNCUL DI HP */}
+          <div className="block md:hidden pt-2">
+            <a
+              href={cert.link}
+              target="_blank"
+              rel="noreferrer"
+              onClick={(e) => handleVerifyClick(e, cert.link)}
+              className="flex items-center justify-center gap-1.5 bg-primary/10 border border-primary/20 text-primary px-4 py-2 rounded-xl text-xs font-medium active:bg-primary/20 transition-all w-full cursor-pointer"
+            >
+              Verify Credential <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </div>
+        </div>
+      </div>
+    );
+  })}
+</div>
 
             </div>
           </div>
